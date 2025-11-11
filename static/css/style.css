@@ -1,0 +1,169 @@
+:root{
+  --navy: #021028;
+  --mid: #0a2a44;
+  --muted: #a8b3c2;
+  --accent: #ffd32a; /* yellow */
+  --card-bg: #07182a;
+  --glass: rgba(255,255,255,0.03);
+  --input-bg: rgba(255,255,255,0.03);
+  --input-border: rgba(255,255,255,0.05);
+  --text: #e7eef7;
+}
+
+/* base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--navy), var(--mid));
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.container {
+  width: min(1100px, 94%);
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+.site-header {
+  background: linear-gradient(90deg, rgba(2,16,40,0.95), rgba(10,42,68,0.95));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  padding: 18px 0;
+  margin-bottom: 18px;
+  text-align:center;
+}
+.site-header h1 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+/* controls */
+.controls-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+  margin-bottom: 20px;
+  max-width: 900px;
+}
+
+/* label */
+label { display:block; margin-bottom:8px; color:var(--muted); font-weight:600; }
+
+/* native fallback select hidden (we use Select2) */
+select { display: none; }
+
+/* --- Select2 dropdown dark-mode fix (make list text black) --- */
+.select2-dark-dropdown .select2-results__options {
+  background-color: #ffffff; /* white dropdown background */
+  color: #000000; /* black text */
+}
+
+.select2-dark-dropdown .select2-results__option {
+  color: #000000; /* black list text */
+  background-color: #ffffff; /* white background for options */
+}
+
+.select2-dark-dropdown .select2-results__option--highlighted {
+  background-color: #ffd32a; /* yellow highlight */
+  color: #000000; /* black text on highlight */
+}
+
+/* Search box inside dropdown */
+.select2-container .select2-search--dropdown .select2-search__field {
+  background-color: #f9f9f9;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+/* Adjust dropdown border */
+.select2-container--default .select2-dropdown {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+}
+
+
+/* Search input inside dropdown */
+.select2-container .select2-search--dropdown .select2-search__field {
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+  padding: 8px;
+  border-radius: 6px;
+  width: 100% !important;
+}
+
+/* small caret color fix */
+.select2-selection__arrow {
+  height: 100%;
+  right: 8px;
+}
+
+/* actions */
+.actions { margin-top:12px; text-align:right; }
+.btn-primary {
+  background: linear-gradient(180deg, #ffd32a, #f0b500);
+  color: #00121a;
+  padding: 10px 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+/* results grid */
+.results h2 { margin: 8px 0 12px 0; color: #fff; font-size: 1.05rem; }
+.movie-name { color: var(--accent); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,0.02);
+  text-align:center;
+}
+.poster {
+  height: 225px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.no-poster {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.card-title { font-weight: 600; font-size: 0.95rem; color: #eaf3ff; }
+
+.site-footer {
+  margin-top: 28px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  text-align:center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .controls-card { padding: 12px; }
+  .poster { height: 180px; }
+}

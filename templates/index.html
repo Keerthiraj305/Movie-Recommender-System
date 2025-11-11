@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="controls-card">
+  <form method="post">
+    <label for="movie">Type or select a movie</label>
+
+    <!-- add class js-movie-select for Select2 initialization -->
+    <select name="movie" id="movie" class="js-movie-select" required>
+      <option></option> <!-- allow placeholder -->
+      {% for m in movie_list %}
+        <option value="{{ m }}" {% if selected_movie==m %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary">Show Recommendation</button>
+    </div>
+  </form>
+</section>
+
+{% if recommendations %}
+<section class="results">
+  <h2>Recommendations for: <span class="movie-name">{{ selected_movie }}</span></h2>
+  <div class="grid">
+    {% for name, poster in recommendations %}
+      <div class="card">
+        <div class="poster">
+          {% if poster %}
+            <img src="{{ poster }}" alt="{{ name }}">
+          {% else %}
+            <div class="no-poster">No image</div>
+          {% endif %}
+        </div>
+        <div class="card-title">{{ name }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

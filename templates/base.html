@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ title or "Movie Recommender" }}</title>
+
+  <!-- Select2 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+  <!-- Optional: small Select2 theme override (we'll style further in our CSS) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    /* small fix so select2's container inherits full width */
+    .select2-container { width: 100% !important; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Movie Recommender System</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- footer removed per request -->
+  <footer class="site-footer">
+    <div class="container">
+      <small></small>
+    </div>
+  </footer>
+
+  <!-- jQuery (required by Select2) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Select2 JS (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+    // Initialize Select2 on elements with class .js-movie-select
+    $(document).ready(function () {
+      $('.js-movie-select').select2({
+        placeholder: "-- Type or select a movie --",
+        allowClear: true,
+        width: 'resolve',
+        dropdownCssClass: "select2-dark-dropdown",   // custom dropdown class for styling
+        selectionCssClass: "select2-dark-selection"  // custom selection class for styling
+      });
+
+      // Open dropdown on focus (nice UX)
+      $('.js-movie-select').on('select2:open', function (e) {
+        $('.select2-search__field').prop('placeholder', 'Search movies...');
+      });
+    });
+  </script>
+</body>
+</html>
