@@ -29,6 +29,13 @@ Alternatively, you can add the included `render.yaml` to your repo and Render wi
 
 Render will expose your app on the public URL it provides once the build succeeds.
 
+Note about Python versions and binary wheels
+ - If Render attempts to build `pandas` or `scipy` from source (you'll see long compile output or C/Cython errors), choose one of these options:
+	 - Use the included `Dockerfile` (select "Docker" when creating the Render service). The repo Dockerfile now uses `python:3.12-slim` and installs dependencies with `--prefer-binary` to prefer prebuilt wheels.
+	 - If using Render's "Python" environment, ensure `runtime.txt` is set to a supported Python 3.12 release (the repo `runtime.txt` is already updated). This helps ensure compatible manylinux wheels are picked and avoids C/C++/Cython compile failures seen on Python 3.13.
+
+If you still see build failures, consider building a Docker image locally and pushing it to a container registry (Docker Hub / GHCR) and use that image on Render — this gives predictable binary compatibility.
+
 
 ## Install & run (Windows PowerShell)
 

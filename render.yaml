@@ -4,7 +4,8 @@ services:
     name: movie-recommender-streamlit
     env: python
     plan: starter
-    buildCommand: "pip install -r requirements.txt"
+    # Upgrade pip/setuptools/wheel first and prefer binary wheels to avoid building pandas/scipy from source
+    buildCommand: "python -m pip install --upgrade pip setuptools wheel && pip install --prefer-binary -r requirements.txt"
     startCommand: "streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false"
     envVars:
       - key: TMDB_API_KEY
