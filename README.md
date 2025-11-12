@@ -13,6 +13,23 @@ A small app that serves movie recommendations from precomputed pickles and fetch
 - Python 3.10+ (recommended)
 - Git (optional)
 
+## Deploying to Render
+
+1. Create a new Web Service in Render and connect your repository (GitHub/GitLab).
+2. Use the `Python` environment and set the start command to:
+
+```
+streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false
+```
+
+3. Set the build command to `pip install -r requirements.txt` (or leave blank to use default).
+4. Add environment variables in Render dashboard: `TMDB_API_KEY` (recommended) and `FLASK_SECRET_KEY` (optional).
+
+Alternatively, you can add the included `render.yaml` to your repo and Render will auto-detect the service.
+
+Render will expose your app on the public URL it provides once the build succeeds.
+
+
 ## Install & run (Windows PowerShell)
 
 Open PowerShell in the project directory and run:

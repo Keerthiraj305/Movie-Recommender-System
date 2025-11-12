@@ -1,0 +1,13 @@
+# Render service definition for deploying this Streamlit app
+services:
+  - type: web
+    name: movie-recommender-streamlit
+    env: python
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0 --server.enableCORS false"
+    envVars:
+      - key: TMDB_API_KEY
+        value: ""
+      - key: FLASK_SECRET_KEY
+        value: ""
